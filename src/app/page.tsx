@@ -1,101 +1,175 @@
-import Image from "next/image";
+import React from "react";
+import Link from "next/link";
+import type { Metadata } from "next";
+import LearnMoreButton from "./components/LearnMoreButton";
+import WelcomeMessage from "./components/WelcomeMessage";
+
+export const metadata: Metadata = {
+  title: "NextMap - Interactive Mapping Application",
+  description:
+    "A modern, accessible mapping application built with Next.js. Explore locations, save favorites, and access them from anywhere.",
+  keywords: [
+    "map",
+    "interactive",
+    "accessibility",
+    "next.js",
+    "react",
+    "location",
+    "navigation",
+  ],
+  authors: [{ name: "NextMap Team" }],
+  openGraph: {
+    title: "NextMap - Interactive Mapping Application",
+    description: "A modern, accessible mapping application built with Next.js",
+    url: "https://nextmap.example.com",
+    siteName: "NextMap",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "NextMap - Interactive Mapping Application",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+};
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex flex-col items-center justify-center min-h-screen p-8 bg-gradient-to-b from-white to-gray-100">
+      <div className="max-w-4xl w-full">
+        <section aria-labelledby="welcome-heading">
+          <h1
+            id="welcome-heading"
+            className="text-4xl font-bold mb-4 text-gray-900 text-center"
+          >
+            Welcome to NextMap
+          </h1>
+          <p className="text-xl mb-8 text-gray-800 text-center">
+            A modern, accessible mapping application built with Next.js
+          </p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* Personalized welcome message */}
+          <WelcomeMessage />
+        </section>
+
+        <section
+          aria-labelledby="features-heading"
+          className="grid md:grid-cols-2 gap-6 mt-8"
+        >
+          <h2 id="features-heading" className="sr-only">
+            Application Features
+          </h2>
+
+          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+            <h3 className="text-2xl font-semibold mb-3 text-gray-900">
+              Interactive Map
+            </h3>
+            <p className="text-gray-800 mb-4">
+              Explore our interactive map centered on Poland. Search for any
+              location worldwide and get detailed information.
+            </p>
+            <div className="flex justify-between items-center">
+              <Link
+                href="/map"
+                className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors inline-block focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                aria-label="Navigate to the interactive map page"
+              >
+                Explore Map
+              </Link>
+              <div className="text-blue-600" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+            <h3 className="text-2xl font-semibold mb-3 text-gray-900">
+              Accessibility First
+            </h3>
+            <p className="text-gray-800 mb-4">
+              This application is built with accessibility in mind, following
+              WCAG standards to ensure everyone can use it effectively.
+            </p>
+            <div className="flex justify-between items-center">
+              <div>
+                <LearnMoreButton topic="Accessibility">
+                  <p className="text-gray-800 mb-2">
+                    Our application follows the Web Content Accessibility
+                    Guidelines (WCAG) 2.1 Level AA to ensure that all users,
+                    including those with disabilities, can effectively use our
+                    services.
+                  </p>
+                  <p className="text-gray-800">
+                    Key features include keyboard navigation, screen reader
+                    support, sufficient color contrast, and responsive design
+                    for all devices.
+                  </p>
+                </LearnMoreButton>
+              </div>
+              <div className="text-green-600" aria-hidden="true">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="tech-heading" className="mt-12">
+          <h2
+            id="tech-heading"
+            className="text-2xl font-bold mb-4 text-center text-gray-900"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            Built with Modern Technologies
+          </h2>
+          <div className="flex flex-wrap justify-center gap-6 mt-4">
+            <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+              <span className="font-medium text-gray-800">Next.js</span>
+            </div>
+            <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+              <span className="font-medium text-gray-800">React</span>
+            </div>
+            <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+              <span className="font-medium text-gray-800">TypeScript</span>
+            </div>
+            <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+              <span className="font-medium text-gray-800">Tailwind CSS</span>
+            </div>
+            <div className="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+              <span className="font-medium text-gray-800">Leaflet</span>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
